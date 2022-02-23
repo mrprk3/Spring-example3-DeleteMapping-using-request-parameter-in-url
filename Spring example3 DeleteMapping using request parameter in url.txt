@@ -1,0 +1,60 @@
+EmployeeController.java
+--------------------------
+
+package com.example.springrestapi.controller;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+//@Controller
+@RestController  // @Controller +  @ResponseBody
+public class EmployeeController {
+	
+	//@RequestMapping(value="/employees", method=RequestMethod.GET)
+	//@ResponseBody
+	@GetMapping("/employees")
+	public String getEmployees() {
+		return "employee details page";
+	}
+	
+	
+	@GetMapping("/employees/{id}")
+	public String getEmployee(@PathVariable("id") Long id) {
+		return "Fteching the employee details for the id "+id;
+	}
+	
+	
+	
+	//localhost:8080/employees?id=35
+	@DeleteMapping("/employees")
+	public String deleteEmployee(@RequestParam("id") Long id) {
+		return "Deleting the employee details for the employee "+id;
+	}
+
+}
+
+
+
+SpringrestapiApplication.java
+
+
+package com.example.springrestapi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringrestapiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringrestapiApplication.class, args);
+	}
+
+}
